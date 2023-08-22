@@ -1,7 +1,13 @@
-const str = document.getElementById('str');
+const str1 = document.getElementById('str1');
+const str2 = document.getElementById('str2');
 const inp = document.getElementById('inp');
 const languages = document.getElementById('language');
 const errors = document.getElementById('errors');
+
+const words = [
+    ['приветствие', 'забавный', 'красотка', 'победитель', 'интеллект', 'удивительный', 'надежный', 'эксперимент', 'мелодичный', 'восхитительный', 'растительность', 'демонстрация', 'громадный', 'оригинальный', 'совершенный', 'безопасность', 'инновационный', 'участник', 'эмоциональный', 'многообразие', 'исследование', 'высококачественный', 'образовательный', 'технологический', 'перспективный', 'увлекательный', 'симпатичный', 'настоящий', 'замечательный', 'оригинальность', 'разнообразие', 'креативный', 'эффективность', 'прогрессивный', 'необычный', 'стабильность', 'интересный', 'научный', 'современный', 'фантастический', 'уникальный', 'культурный', 'творческий', 'индивидуальность', 'продуктивность', 'экологический', 'безграничный', 'уверенность', 'просторный', 'гармоничный'],
+    ['greeting ', 'funny ', 'beauty ', 'winner ', 'intelligence ', 'amazing ', 'reliable ', 'experiment ', 'melodic ', 'delightful ', 'vegetation ', 'demonstration ', 'enormous ', 'original ', 'perfect ', 'safety ', 'innovative ', 'participant ', 'emotional ', 'diversity ', 'research ', 'high-quality ', 'educational ', 'technological ', 'promising ', 'captivating ', 'cute ', 'genuine ', 'wonderful ', 'originality ', 'variety ', 'creative ', 'efficiency ', 'progressive ', 'unusual ', 'stability ', 'interesting ', 'scientific ', 'modern ', 'fantastic ', 'unique ', 'cultural ', 'creative ', 'individuality ', 'productivity ', 'ecological ', 'boundless ', 'confidence ', 'spacious ', 'harmonious']
+];
 
 const messages = [
     {
@@ -47,14 +53,14 @@ class Logger {
     }
 };
 
-if (str === null || inp === null || languages === null || errors === null) {
+if (str1 === null || str2 === null || inp === null || languages === null || errors === null) {
     console.log('нет одного из элементов');
     } else {
         let logger =  new Logger(messages[languages.selectedIndex]) 
-        str.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
+        str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
         languages.addEventListener('input', function() {
             logger = new Logger(messages[languages.selectedIndex]) 
-            str.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
+            str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
         });
     };
 

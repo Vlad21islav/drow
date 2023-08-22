@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap');
+
+body {
+    background-color: rgb(223, 223, 231);
+    color: goldenrod;
+    font: normal 16px 'Rubik Wet Paint', cursive;
+    text-shadow: -2px -2px 3px rgb(100, 100, 100);
+}
+
+.all {
+    text-align: center;
+}   
+
+.inp {
+    border: none;
+    border-bottom: 3px solid gray;
+    background-color: rgb(223, 223, 231);
+    color: green;
+    font: normal 16px 'Rubik Wet Paint', cursive;
+    width: 40%;
+}
+
+.error {
+    color: red;
+    font-size: 25px;
+}

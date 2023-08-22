@@ -28,7 +28,7 @@ const messages = [
         FIRST_TIME_IS_UP: `time is up, your record is $1`,
         TIME_IS_UP: `time is up, your record is $1, the average time of writing a word is $2 seconds, total time is $3 seconds`,
     },
-]
+];
 
 class Logger {
     constructor(massages) {
@@ -53,14 +53,32 @@ class Logger {
     }
 };
 
+function print(str, name) {
+    if (name === null) {
+        console.log(`нету переменной ${name} или эта переменная не id`);
+    } else {
+        name.innerHTML = str;
+    }
+};
+
+class Game {
+    constructor(logger) {
+        this.logger = logger;
+    }
+    remember_word() {
+        print(this.logger.info('REMEMBER_WORD'), str1);
+        print(this.logger.info('REMEMBER_WORD'), str2);
+    };
+};
+
 if (str1 === null || str2 === null || inp === null || languages === null || errors === null) {
     console.log('нет одного из элементов');
-    } else {
-        let logger =  new Logger(messages[languages.selectedIndex]) 
+} else {
+    let logger =  new Logger(messages[languages.selectedIndex]) 
+    str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
+    languages.addEventListener('input', function() {
+        logger = new Logger(messages[languages.selectedIndex]) 
         str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
-        languages.addEventListener('input', function() {
-            logger = new Logger(messages[languages.selectedIndex]) 
-            str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
-        });
-    };
+    });
+};
 

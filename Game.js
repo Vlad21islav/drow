@@ -1,5 +1,5 @@
 'use strict';
-const readline = require('node:readline');
+import { createInterface } from 'node:readline';
 
 class Game {
   constructor(words, logger) {
@@ -8,7 +8,7 @@ class Game {
     this.overTime = 0;
     this.index = 0;
     this.timeoutId;
-    this.rl = readline.createInterface({
+    this.rl = createInterface({
       input: process.stdin,
       output: process.stdout,
       prompt: '──> '
@@ -88,6 +88,9 @@ class Game {
   resultMessageParams() {
     return [this.index, this.getAverageTime(), this.getTotalTime()]
   };
+  print() {
+    
+  }
 };
 
-module.exports = Game;
+export default Game;

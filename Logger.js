@@ -22,5 +22,4 @@ class Logger {
     return this.massages[str]
   }
 };
-module.exports = Logger;
-  
+export default Logger;

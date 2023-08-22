@@ -1,6 +1,6 @@
-const {words, messages} = require('./massages/index')
-const Logger = require('./Logger')
-const Game = require('./Game')
+import { words, messages } from './massages/index'
+import Logger from './Logger'
+import Game from './Game'
 
 const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
   ? 'rus'

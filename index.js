@@ -3,11 +3,22 @@ const str2 = document.getElementById('str2');
 const inp = document.getElementById('inp');
 const languages = document.getElementById('language');
 const errors = document.getElementById('errors');
+const btn = document.getElementById('btn');
+const language_word = document.getElementById('language_word');
+const language_names = document.getElementById('languages');
+const language_words = ['язык', 'language']
+const play = ['играть', 'play']
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
 
 const words = [
     ['приветствие', 'забавный', 'красотка', 'победитель', 'интеллект', 'удивительный', 'надежный', 'эксперимент', 'мелодичный', 'восхитительный', 'растительность', 'демонстрация', 'громадный', 'оригинальный', 'совершенный', 'безопасность', 'инновационный', 'участник', 'эмоциональный', 'многообразие', 'исследование', 'высококачественный', 'образовательный', 'технологический', 'перспективный', 'увлекательный', 'симпатичный', 'настоящий', 'замечательный', 'оригинальность', 'разнообразие', 'креативный', 'эффективность', 'прогрессивный', 'необычный', 'стабильность', 'интересный', 'научный', 'современный', 'фантастический', 'уникальный', 'культурный', 'творческий', 'индивидуальность', 'продуктивность', 'экологический', 'безграничный', 'уверенность', 'просторный', 'гармоничный'],
     ['greeting ', 'funny ', 'beauty ', 'winner ', 'intelligence ', 'amazing ', 'reliable ', 'experiment ', 'melodic ', 'delightful ', 'vegetation ', 'demonstration ', 'enormous ', 'original ', 'perfect ', 'safety ', 'innovative ', 'participant ', 'emotional ', 'diversity ', 'research ', 'high-quality ', 'educational ', 'technological ', 'promising ', 'captivating ', 'cute ', 'genuine ', 'wonderful ', 'originality ', 'variety ', 'creative ', 'efficiency ', 'progressive ', 'unusual ', 'stability ', 'interesting ', 'scientific ', 'modern ', 'fantastic ', 'unique ', 'cultural ', 'creative ', 'individuality ', 'productivity ', 'ecological ', 'boundless ', 'confidence ', 'spacious ', 'harmonious']
 ];
+
+let shuffled_words = shuffle(words[1])
 
 const messages = [
     {
@@ -58,27 +69,39 @@ function print(str, name) {
         console.log(`нету переменной ${name} или эта переменная не id`);
     } else {
         name.innerHTML = str;
-    }
+    };
 };
 
 class Game {
-    constructor(logger) {
+    constructor(logger, words) {
         this.logger = logger;
+        this.words = words;
     }
+
+    start() {
+        btn.addEventListener('click', function() {
+            this.remember_word();
+        });
+    }
+
     remember_word() {
         print(this.logger.info('REMEMBER_WORD'), str1);
-        print(this.logger.info('REMEMBER_WORD'), str2);
+        print(this.words[0], str2);
+        btn.style.display='none';
+        language_names.style.display='none';
     };
 };
 
 if (str1 === null || str2 === null || inp === null || languages === null || errors === null) {
     console.log('нет одного из элементов');
 } else {
-    let logger =  new Logger(messages[languages.selectedIndex]) 
-    str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
+    let logger =  new Logger(messages[languages.selectedIndex]); 
+    inp.style.display='none';
     languages.addEventListener('input', function() {
-        logger = new Logger(messages[languages.selectedIndex]) 
-        str1.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
+        logger = new Logger(messages[languages.selectedIndex]); 
+        language_word.innerHTML = language_words[languages.selectedIndex];
+        btn.value = play[languages.selectedIndex];
+        shuffled_words = shuffle(words[languages.selectedIndex])
     });
+    new Game(logger, shuffled_words).start();
 };
-

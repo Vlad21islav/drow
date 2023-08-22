@@ -20,7 +20,15 @@ body {
     width: 40%;
 }
 
-.error {
+#language {
+    margin-top: 20px;
+    border: 2px solid gray;
+    background-color: rgb(223, 223, 231);
+    color: blue;
+    font: normal 16px 'Rubik Wet Paint', cursive;
+}
+
+#errors {
     color: red;
     font-size: 25px;
 }

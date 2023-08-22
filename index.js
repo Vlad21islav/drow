@@ -24,12 +24,37 @@ const messages = [
     },
 ]
 
+class Logger {
+    constructor(massages) {
+      this.massages = massages
+    };
+  
+    info(str, value) {
+      let massage = this.get(str)
+      if (massage === undefined) return str
+  
+      if (value === undefined) return massage
+  
+      value.forEach((value, index) => {
+        massage = massage.replace(('$' + (index + 1)), value)
+      });
+  
+      return massage;
+    };
+  
+    get(str) {
+      return this.massages[str]
+    }
+};
+
 if (str === null || inp === null || languages === null || errors === null) {
     console.log('нет одного из элементов');
     } else {
+        let logger =  new Logger(messages[languages.selectedIndex]) 
+        str.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
         languages.addEventListener('input', function() {
-            str.innerHTML = messages[languages.selectedIndex].FIRST_TIME_IS_UP
+            logger = new Logger(messages[languages.selectedIndex]) 
+            str.innerHTML = logger.info('YOU_HAVE_LOST', [3, 4, 5])
         });
     };
-
 

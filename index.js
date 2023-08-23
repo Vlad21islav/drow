@@ -115,17 +115,19 @@ class Game {
         print('', str2);
         inp.style.display='';
         inp.placeholder = this.logger.info('ENTER_WORD');
+        this.timer = setTimeout(() => {
+            this.end();
+        }, 7000);
         btn_inp.addEventListener('click', () => {
+            clearTimeout(this.timer);
             this.enter_word();
         });
         inp.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
+                clearTimeout(this.timer);
                 this.enter_word();
             };
         });
-        setTimeout(() => {
-            this.end();
-        }, 7000);
     };
 
     end() {

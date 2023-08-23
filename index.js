@@ -8,6 +8,7 @@ const language_word = document.getElementById('language_word');
 const language_names = document.getElementById('languages');
 const won = document.getElementById('won');
 const btn_inp = document.getElementById('btn_inp');
+const btn_out = document.getElementById('btn_out');
 
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -22,6 +23,7 @@ let shuffled_words = shuffle(words[1])
 
 const messages = [
     {
+        EXIT: `выйти`,
         ANSWER: `ответить`,
         LANGUGE: `язык`,
         PLAY: `играть`,
@@ -34,6 +36,7 @@ const messages = [
         TIME_IS_UP: `время вышло, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
     },
     {
+        EXIT: `exit`,
         ANSWER: `answer`,
         LANGUGE: `language`,
         PLAY: `play`,
@@ -88,8 +91,15 @@ class Game {
     }
 
     start() {
+        print('', str1);
+        print('', str2);
+        print('', errors);
+        print('', won);
+        btn_out.style.display='none';
         inp.style.display='none';
         btn_inp.style.display='none';
+        language_names.style.display='';
+        btn.style.display='';
         languages.addEventListener('input', () => {
             this.logger = new Logger(messages[languages.selectedIndex]); 
             language_word.innerHTML = messages[languages.selectedIndex].LANGUGE;
@@ -148,6 +158,11 @@ class Game {
                 print(this.logger.info('YOU_HAVE_LOST', [this.count, this.getAverageTime(), this.getTotalTime()]), errors);
             };
         };
+        btn_out.style.display='';
+        btn_out.value = messages[languages.selectedIndex].EXIT;
+        btn_out.addEventListener('click', () => {
+            this.start();
+        });
         inp.style.display='none';
     };
 

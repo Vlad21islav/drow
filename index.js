@@ -129,6 +129,7 @@ class Game {
         print('', str2);
         inp.style.display='';
         inp.placeholder = this.logger.info('ENTER_WORD');
+        this.startTime = Date.now();
         this.timer = setTimeout(() => {
             this.end();
         }, 7000);
@@ -145,6 +146,7 @@ class Game {
     };
 
     end() {
+        this.startTime = Date.now() - this.startTime;
         btn_inp.style.display='none';
         if (this.count > shuffled_words.length) {
             print(this.logger.info('YOU_WON'), won);

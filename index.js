@@ -6,6 +6,7 @@ const errors = document.getElementById('errors');
 const btn = document.getElementById('btn');
 const language_word = document.getElementById('language_word');
 const language_names = document.getElementById('languages');
+const won = document.getElementById('won');
 
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -115,9 +116,9 @@ class Game {
 
     end() {
         if (inp.value === this.shuffled_words[0]) {
-            print(this.logger.info('YOU_WON'), str1) 
+            print(this.logger.info('YOU_WON'), won) 
         } else {
-            print(this.logger.info('YOU_HAVE_LOST'), str1) 
+            print(this.logger.info('YOU_HAVE_LOST'), errors) 
         };
         inp.style.display='none';
     };

@@ -22,11 +22,12 @@ body {
     color: blue;
 }
 
-.play {
+.btn {
     margin-top: 20px;
     border: 2px solid gray;
     background-color: rgb(223, 223, 231);
     color: blue;
+    cursor: pointer;
 }
 
 #errors {

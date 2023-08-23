@@ -29,7 +29,9 @@ const messages = [
         YOU_HAVE_LOST: `Вы проиграли, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
         YOU_WON: `Слова закончились, вы выиграли, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
         REMEMBER_WORD: `Запомните слово:`,
-        ENTER_WORD: `Введите слово правильно:`
+        ENTER_WORD: `Введите слово правильно:`,
+        FIRST_TIME_IS_UP: `время вышло, ваш рекорд $1`,
+        TIME_IS_UP: `время вышло, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
     },
     {
         ANSWER: `answer`,
@@ -39,7 +41,9 @@ const messages = [
         YOU_HAVE_LOST: `You lost, your record is $1, the average time of writing a word is $2 second, total time is $3 seconds`,
         YOU_WON: `The words are over, you have won, your record is $1, the average time of writing a word is $2 seconds, total time is $3 seconds`,
         REMEMBER_WORD: `Remember the word:`,
-        ENTER_WORD: `Enter the word correctly:`
+        ENTER_WORD: `Enter the word correctly:`,
+        FIRST_TIME_IS_UP: `time is up, your record is $1`,
+        TIME_IS_UP: `time is up, your record is $1, the average time of writing a word is $2 seconds, total time is $3 seconds`,
     },
 ];
 
@@ -120,12 +124,12 @@ class Game {
         }, 7000);
         btn_inp.addEventListener('click', () => {
             clearTimeout(this.timer);
-            this.enter_word();
+            this.end();
         });
         inp.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
                 clearTimeout(this.timer);
-                this.enter_word();
+                this.end();
             };
         });
     };

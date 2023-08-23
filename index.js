@@ -73,22 +73,51 @@ function print(str, name) {
 };
 
 class Game {
-    constructor(logger, words) {
+    constructor(logger, shuffled_words) {
         this.logger = logger;
-        this.words = words;
+        this.shuffled_words = shuffled_words;
     }
 
     start() {
-        btn.addEventListener('click', function() {
+        inp.style.display='none';
+        languages.addEventListener('input', () => {
+            this.logger = new Logger(messages[languages.selectedIndex]); 
+            language_word.innerHTML = language_words[languages.selectedIndex];
+            btn.value = play[languages.selectedIndex];
+            this.shuffled_words = shuffle(words[languages.selectedIndex])
+        });
+        btn.addEventListener('click', () => {
             this.remember_word();
         });
-    }
+    };
 
     remember_word() {
         print(this.logger.info('REMEMBER_WORD'), str1);
-        print(this.words[0], str2);
+        print(this.shuffled_words[0], str2);
         btn.style.display='none';
         language_names.style.display='none';
+        setTimeout(() => {
+            this.enter_word();
+        }, 2000);
+    };
+
+    enter_word() {
+        print('', str1);
+        print('', str2);
+        inp.style.display='';
+        inp.placeholder = this.logger.info('ENTER_WORD');
+        setTimeout(() => {
+            this.end()
+        }, 7000);
+    };
+
+    end() {
+        if (inp.value === this.shuffled_words[0]) {
+            print(this.logger.info('YOU_WON'), str1) 
+        } else {
+            print(this.logger.info('YOU_HAVE_LOST'), str1) 
+        };
+        inp.style.display='none';
     };
 };
 
@@ -96,12 +125,5 @@ if (str1 === null || str2 === null || inp === null || languages === null || erro
     console.log('нет одного из элементов');
 } else {
     let logger =  new Logger(messages[languages.selectedIndex]); 
-    inp.style.display='none';
-    languages.addEventListener('input', function() {
-        logger = new Logger(messages[languages.selectedIndex]); 
-        language_word.innerHTML = language_words[languages.selectedIndex];
-        btn.value = play[languages.selectedIndex];
-        shuffled_words = shuffle(words[languages.selectedIndex])
-    });
     new Game(logger, shuffled_words).start();
 };

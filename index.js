@@ -6,8 +6,6 @@ const errors = document.getElementById('errors');
 const btn = document.getElementById('btn');
 const language_word = document.getElementById('language_word');
 const language_names = document.getElementById('languages');
-const language_words = ['язык', 'language']
-const play = ['играть', 'play']
 
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -22,6 +20,8 @@ let shuffled_words = shuffle(words[1])
 
 const messages = [
     {
+        LANGUGE: `язык`,
+        PLAY: `играть`,
         FIRST_YOU_HAVE_LOST: `Вы проиграли, ваш рекорд $1`,
         YOU_HAVE_LOST: `Вы проиграли, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
         YOU_WON: `Слова закончились, вы выиграли, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
@@ -31,6 +31,8 @@ const messages = [
         TIME_IS_UP: `время вышло, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
     },
     {
+        LANGUGE: `language`,
+        PLAY: `play`,
         FIRST_YOU_HAVE_LOST: `You lost, your record is $1`,
         YOU_HAVE_LOST: `You lost, your record is $1, the average time of writing a word is $2 second, total time is $3 seconds`,
         YOU_WON: `The words are over, you have won, your record is $1, the average time of writing a word is $2 seconds, total time is $3 seconds`,
@@ -82,8 +84,8 @@ class Game {
         inp.style.display='none';
         languages.addEventListener('input', () => {
             this.logger = new Logger(messages[languages.selectedIndex]); 
-            language_word.innerHTML = language_words[languages.selectedIndex];
-            btn.value = play[languages.selectedIndex];
+            language_word.innerHTML = messages[languages.selectedIndex].LANGUGE;
+            btn.value = messages[languages.selectedIndex].PLAY;
             this.shuffled_words = shuffle(words[languages.selectedIndex])
         });
         btn.addEventListener('click', () => {

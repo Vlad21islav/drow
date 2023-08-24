@@ -10,16 +10,10 @@ const won = document.getElementById('won');
 const btn_inp = document.getElementById('btn_inp');
 const btn_out = document.getElementById('btn_out');
 
-function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
-};
-
 const words = [
     ['приветствие', 'забавный', 'красотка', 'победитель', 'интеллект', 'удивительный', 'надёжный', 'эксперимент', 'мелодичный', 'восхитительный', 'растительность', 'демонстрация', 'громадный', 'оригинальный', 'совершённый', 'безопасность', 'инновационный', 'участник', 'эмоциональный', 'многообразие', 'исследование', 'высококачественный', 'образовательный', 'технологический', 'перспективный', 'увлекательный', 'симпатичный', 'настоящий', 'замечательный', 'оригинальность', 'разнообразие', 'креативный', 'эффективность', 'прогрессивный', 'необычный', 'стабильность', 'интересный', 'научный', 'современный', 'фантастический', 'уникальный', 'культурный', 'творческий', 'индивидуальность', 'продуктивность', 'экологический', 'безграничный', 'уверенность', 'просторный', 'гармоничный'],
     ['greeting', 'funny', 'beauty', 'winner', 'intelligence', 'amazing', 'reliable', 'experiment', 'melodic', 'delightful', 'vegetation', 'demonstration', 'enormous', 'original', 'perfect', 'safety', 'innovative', 'participant', 'emotional', 'diversity', 'research', 'high-quality', 'educational', 'technological', 'promising', 'captivating', 'cute', 'genuine', 'wonderful', 'originality', 'variety', 'creative', 'efficiency', 'progressive', 'unusual', 'stability', 'interesting', 'scientific', 'modern', 'fantastic', 'unique', 'cultural', 'creative', 'individuality', 'productivity', 'ecological', 'boundless', 'confidence', 'spacious', 'harmonious']
 ];
-
-let shuffled_words = shuffle(words[1])
 
 const messages = [
     {
@@ -82,9 +76,9 @@ function print(str, name) {
 };
 
 class Game {
-    constructor(logger, shuffled_words) {
+    constructor(logger) {
         this.logger = logger;
-        this.shuffled_words = shuffled_words;
+        this.shuffled_words
         this.count = 0;
         this.overTime = 0;
         this.startTime = 0;
@@ -100,11 +94,12 @@ class Game {
         btn_inp.style.display='none';
         language_names.style.display='';
         btn.style.display='';
+        this.shuffled_words = this.shuffle(words[languages.selectedIndex])
         languages.addEventListener('input', () => {
             this.logger = new Logger(messages[languages.selectedIndex]); 
             language_word.innerHTML = messages[languages.selectedIndex].LANGUGE;
             btn.value = messages[languages.selectedIndex].PLAY;
-            this.shuffled_words = shuffle(words[languages.selectedIndex]);
+            this.shuffled_words = this.shuffle(words[languages.selectedIndex]);
         });
         btn.addEventListener('click', () => {
             btn.style.display='none';
@@ -114,6 +109,11 @@ class Game {
     };
 
     remember_word() {
+        print('', str1);
+        print('', str2);
+        print('', errors);
+        print('', won);
+        inp.style.display='none';
         inp.value = ''
         print(this.logger.info('REMEMBER_WORD'), str1);
         print(this.shuffled_words[this.count].split('').reverse().join(''), str2);
@@ -146,26 +146,29 @@ class Game {
     };
 
     end() {
-        this.startTime = Date.now() - this.startTime;
+        this.overTime = Date.now() - this.startTime;
         btn_inp.style.display='none';
-        if (this.count > shuffled_words.length) {
+        if (this.count >   this.shuffled_words.length) {
             print(this.logger.info('YOU_WON'), won);
         } else if (inp.value === this.shuffled_words[this.count]) {
+            console.log('won')
             this.count++;
             this.remember_word();
         } else {
+            console.log('over')
             if (this.count === 0) {
                 print(this.logger.info('FIRST_YOU_HAVE_LOST', [this.count]), errors);
             } else {
                 print(this.logger.info('YOU_HAVE_LOST', [this.count, this.getAverageTime(), this.getTotalTime()]), errors);
             };
+            btn_out.style.display='';
+            btn_out.value = messages[languages.selectedIndex].EXIT;
+            btn_out.addEventListener('click', () => {
+                this.start();
+                btn_out.style.display='none';
+            });
+            inp.style.display='none';
         };
-        btn_out.style.display='';
-        btn_out.value = messages[languages.selectedIndex].EXIT;
-        btn_out.addEventListener('click', () => {
-            this.start();
-        });
-        inp.style.display='none';
     };
 
     getAverageTime() {
@@ -175,11 +178,15 @@ class Game {
     getTotalTime() {
         return Math.floor(this.overTime / 1000 * 100) / 100;
     };
+
+    shuffle(array) {
+        return array.sort(() => Math.random() - 0.5);
+    };
 };
 
 if (str1 === null || str2 === null || inp === null || languages === null || errors === null) {
     console.log('нет одного из элементов');
 } else {
     let logger =  new Logger(messages[languages.selectedIndex]); 
-    new Game(logger, shuffled_words).start();
+    new Game(logger).start();
 };

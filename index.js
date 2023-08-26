@@ -5,13 +5,14 @@ class Game{
         this.answer_btn = document.getElementById('answer_btn');
         this.exit_btn = document.getElementById('exit_btn');
         this.result = document.getElementById('result');
+        this.words = document.getElementById('words');
     }
 
     bugs() {
-        if (this.start_btn === null || this.input === null || this.answer_btn === null || this.exit_btn === null || this.result === null) {
+        if (this.start_btn === null || this.input === null || this.answer_btn === null || this.exit_btn === null || this.result === null || this.words === null) {
             console.log('нету одной из переменных')
         } else {
-            
+
         }
     }
 }

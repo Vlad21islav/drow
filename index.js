@@ -7,15 +7,23 @@ class Game{
         this.result = document.getElementById('result');
         this.words = document.getElementById('words');
 
-        if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"')
-        if (this.input === null) throw new Error('Не найден элемент с id "input"')
-        if (this.answer_btn === null) throw new Error('Не найден элемент с id "answer_btn"')
-        if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"')
-        if (this.result === null) throw new Error('Не найден элемент с id "result"')
-        if (this.words === null) throw new Error('Не найден элемент с id "words"')
+        if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
+        if (this.input === null) throw new Error('Не найден элемент с id "input"');
+        if (this.answer_btn === null) throw new Error('Не найден элемент с id "answer_btn"');
+        if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"');
+        if (this.result === null) throw new Error('Не найден элемент с id "result"');
+        if (this.words === null) throw new Error('Не найден элемент с id "words"');
         
         this.start_btn.addEventListener('click', () => {
-            undefined
+            undefined;
+        });
+
+        this.answer_btn.addEventListener('click', () => {
+            undefined;
+        });
+
+        this.exit_btn.addEventListener('click', () => {
+            undefined;
         });
     };
 };

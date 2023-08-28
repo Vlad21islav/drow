@@ -17,10 +17,6 @@ class Game{
         if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"');
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.words === null) throw new Error('Не найден элемент с id "words"');
-        
-        this.start_btn.addEventListener('click', () => {
-            this.start();
-        });
 
         this.answer_btn.addEventListener('click', () => {
             undefined;
@@ -32,6 +28,8 @@ class Game{
     };
 
     start() {
-        this.word.innerHTML = this.words[0]
-    }
+        this.start_btn.addEventListener('click', () => {
+            this.word.innerHTML = this.words[0];
+        });
+    };
 };

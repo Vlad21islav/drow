@@ -9,7 +9,7 @@ class Game{
         this.result = document.getElementById('result');
         this.word = document.getElementById('words');
 
-        this.words = words
+        this.words = words;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');

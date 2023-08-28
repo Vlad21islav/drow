@@ -18,9 +18,7 @@ class Game{
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.words === null) throw new Error('Не найден элемент с id "words"');
         
-        this.start_btn.addEventListener('click', () => {
-            this.start();
-        });
+        this.start_btn.addEventListener('click', this.start);
 
         this.answer_btn.addEventListener('click', () => {
             undefined;

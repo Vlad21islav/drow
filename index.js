@@ -1,5 +1,7 @@
+words = ['приветствие', 'забавный', 'красотка', 'победитель', 'интеллект', 'удивительный', 'надёжный', 'эксперимент', 'мелодичный', 'восхитительный', 'растительность', 'демонстрация', 'громадный', 'оригинальный', 'совершённый', 'безопасность', 'инновационный', 'участник', 'эмоциональный', 'многообразие', 'исследование', 'высококачественный', 'образовательный', 'технологический', 'перспективный', 'увлекательный', 'симпатичный', 'настоящий', 'замечательный', 'оригинальность', 'разнообразие', 'креативный', 'эффективность', 'прогрессивный', 'необычный', 'стабильность', 'интересный', 'научный', 'современный', 'фантастический', 'уникальный', 'культурный', 'творческий', 'индивидуальность', 'продуктивность', 'экологический', 'безграничный', 'уверенность', 'просторный', 'гармоничный'];
+
 class Game{
-    constructor() {
+    constructor(words) {
         this.start_btn = document.getElementById('start_btn');
         this.input = document.getElementById('input');
         this.answer_btn = document.getElementById('answer_btn');
@@ -7,10 +9,7 @@ class Game{
         this.result = document.getElementById('result');
         this.word = document.getElementById('words');
 
-        this.words = [
-            ['приветствие', 'забавный', 'красотка', 'победитель', 'интеллект', 'удивительный', 'надёжный', 'эксперимент', 'мелодичный', 'восхитительный', 'растительность', 'демонстрация', 'громадный', 'оригинальный', 'совершённый', 'безопасность', 'инновационный', 'участник', 'эмоциональный', 'многообразие', 'исследование', 'высококачественный', 'образовательный', 'технологический', 'перспективный', 'увлекательный', 'симпатичный', 'настоящий', 'замечательный', 'оригинальность', 'разнообразие', 'креативный', 'эффективность', 'прогрессивный', 'необычный', 'стабильность', 'интересный', 'научный', 'современный', 'фантастический', 'уникальный', 'культурный', 'творческий', 'индивидуальность', 'продуктивность', 'экологический', 'безграничный', 'уверенность', 'просторный', 'гармоничный'],
-            ['greeting', 'funny', 'beauty', 'winner', 'intelligence', 'amazing', 'reliable', 'experiment', 'melodic', 'delightful', 'vegetation', 'demonstration', 'enormous', 'original', 'perfect', 'safety', 'innovative', 'participant', 'emotional', 'diversity', 'research', 'high-quality', 'educational', 'technological', 'promising', 'captivating', 'cute', 'genuine', 'wonderful', 'originality', 'variety', 'creative', 'efficiency', 'progressive', 'unusual', 'stability', 'interesting', 'scientific', 'modern', 'fantastic', 'unique', 'cultural', 'creative', 'individuality', 'productivity', 'ecological', 'boundless', 'confidence', 'spacious', 'harmonious']
-        ];
+        this.words = words
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
@@ -20,7 +19,7 @@ class Game{
         if (this.words === null) throw new Error('Не найден элемент с id "words"');
         
         this.start_btn.addEventListener('click', () => {
-            undefined;
+            this.start();
         });
 
         this.answer_btn.addEventListener('click', () => {
@@ -31,4 +30,8 @@ class Game{
             undefined;
         });
     };
+
+    start() {
+        this.word.innerHTML = this.words[0]
+    }
 };

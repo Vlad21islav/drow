@@ -20,10 +20,6 @@ class Game{
         
         this.start_btn.addEventListener('click', this.start);
 
-        this.answer_btn.addEventListener('click', () => {
-            undefined;
-        });
-
         this.exit_btn.addEventListener('click', () => {
             undefined;
         });
@@ -31,6 +27,14 @@ class Game{
 
     start() {
         this.word.innerHTML = this.words[0];
+
+        this.answer_btn.addEventListener('click', () => {
+            if (this.input.value === this.words[0]) {
+                this.result.innerHTML = 'правильно'
+            } else {
+                this.result.innerHTML = 'неправильно'
+            };
+        });
     };
 };
 

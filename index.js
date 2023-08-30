@@ -10,6 +10,7 @@ class Game{
         this.word = document.getElementById('words');
 
         this.words = words;
+        this.turn = 0;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
@@ -18,13 +19,16 @@ class Game{
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.words === null) throw new Error('Не найден элемент с id "words"');
         
-        this.start_btn.addEventListener('click', this.start);
+        this.start_btn.addEventListener('click', this.start(this.turn));
 
         this.answer_btn.addEventListener('click', () => {
-            if (this.input.value === this.words[0]) {
-                this.result.innerHTML = 'правильно'
+            this.word.innerHTML = '';
+            if (this.input.value === this.words[this.turn]) {
+                this.input.value = '';
+                this.turn += 1
+                this.start(this.turn);
             } else {
-                this.result.innerHTML = 'неправильно'
+                this.result.innerHTML = 'неправильно';
             };
         });
 
@@ -33,8 +37,8 @@ class Game{
         });
     };
 
-    start() {
-        this.word.innerHTML = this.words[0];
+    start(turn) {
+        this.word.innerHTML = this.words[turn];
     };
 };
 

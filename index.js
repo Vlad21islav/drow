@@ -25,7 +25,7 @@ class Game{
             this.word.innerHTML = '';
             if (this.input.value === this.words[this.turn]) {
                 this.input.value = '';
-                this.turn += 1
+                this.turn += 1;
                 this.start(this.turn);
             } else {
                 this.result.innerHTML = 'неправильно';

@@ -19,20 +19,17 @@ class Game{
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.words === null) throw new Error('Не найден элемент с id "words"');
         
-        this.start_btn.addEventListener('click', this.start());
+        this.start_btn.addEventListener('click', this.start);
 
         this.answer_btn.addEventListener('click', () => {
             this.word.innerHTML = '';
             if (this.input.value === this.words[this.index]) {
                 this.input.value = '';
                 this.index++;
-                this.start(this.index);
             } else {
                 this.result.innerHTML = 'неправильно';
             };
         });
-
-        this.exit_btn.addEventListener('click', );
     };
 
     start() {

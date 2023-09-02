@@ -22,10 +22,11 @@ class Game{
         this.start_btn.addEventListener('click', this.start(this.turn));
 
         this.answer_btn.addEventListener('click', () => {
+            this.word.innerHTML = '';
             if (this.input.value === this.words[this.turn]) {
                 this.input.value = '';
                 this.turn += 1;
-                this.word.innerHTML = this.words[this.index];
+                this.start(this.turn);
             } else {
                 this.result.innerHTML = 'неправильно';
             };

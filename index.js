@@ -7,7 +7,7 @@ class Game{
         this.answer_btn = document.getElementById('answer_btn');
         this.exit_btn = document.getElementById('exit_btn');
         this.result = document.getElementById('result');
-        this.word = document.getElementById('words');
+        this.word = document.getElementById('word');
 
         this.words = words;
         this.index = 0;
@@ -17,17 +17,19 @@ class Game{
         if (this.answer_btn === null) throw new Error('Не найден элемент с id "answer_btn"');
         if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"');
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
-        if (this.words === null) throw new Error('Не найден элемент с id "words"');
+        if (this.word === null) throw new Error('Не найден элемент с id "word"');
         
-        this.start_btn.addEventListener('click', this.start);
+        this.start_btn.addEventListener('click', () => this.start());
 
         this.answer_btn.addEventListener('click', () => {
-            if (this.input.value === this.words[this.index]) {
+            if (this.index >= words.length) {
+                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+            } else if (this.input.value === this.words[this.index]) {
                 this.input.value = '';
                 this.index++;
                 this.word.innerHTML = this.words[this.index];
             } else {
-                this.result.innerHTML = 'неправильно';
+                this.result.innerHTML = `неправильно , ваш рекорд ${this.index}`;
             };
         });
 
@@ -37,7 +39,7 @@ class Game{
     };
 
     start() {
-        this.word.innerHTML = this.words[0];
+        this.word.innerHTML = this.words[this.index];
     };
 };
 

@@ -22,12 +22,12 @@ class Game{
         this.start_btn.addEventListener('click', () => this.start());
 
         this.answer_btn.addEventListener('click', () => {
-            if (this.index > words.length) {
-                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
-            } else if (this.input.value === this.words[this.index]) {
+            if (this.input.value === this.words[this.index]) {
                 this.input.value = '';
                 this.index++;
                 this.word.innerHTML = this.words[this.index];
+            } else if (this.index >= words.length) {
+                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
             } else {
                 this.result.innerHTML = `неправильно , ваш рекорд ${this.index}`;
             };

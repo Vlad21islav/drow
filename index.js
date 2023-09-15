@@ -24,7 +24,7 @@ class Game{
         this.answer_btn.addEventListener('click', () => {
             if (this.input.value !== this.words[this.index]) {
                 this.result.innerHTML = `неправильно , ваш рекорд ${this.index}`;
-            } else if (this.index == words.length) {
+            } else if (this.index == words.length -1) {
                 this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
             } else {
                 this.input.value = '';

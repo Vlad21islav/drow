@@ -37,3 +37,7 @@ body {
 #won {
     color: green;
 }
+
+.hidden {
+    display: none;
+}

@@ -43,6 +43,10 @@ class Game{
 
     start() {
         this.word.innerHTML = this.words[this.index];
+        this.start_btn.classList.add('hidden')
+        this.input.classList.remove('hidden')
+        this.answer_btn.classList.remove('hidden')
+        this.exit_btn.classList.remove('hidden')
     };
 };
 

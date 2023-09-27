@@ -22,19 +22,8 @@ class Game{
         this.start_btn.addEventListener('click', () => this.start());
 
         this.answer_btn.addEventListener('click', () => {
-            if (this.input.value !== this.words[this.index]) {
-                this.result.innerHTML = `неправильно , ваш рекорд ${this.index}`;
-                this.word.innerHTML = '';
-                return;
-            };
-            
-            if (this.index === words.length -1) {
-                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
-            } else {
-                this.input.value = '';
-                this.index++;
-                this.word.innerHTML = this.words[this.index];
-            };
+            clearTimeout(this.timer)
+            this.if_right()
         });
 
         this.exit_btn.addEventListener('click', () => {
@@ -43,12 +32,46 @@ class Game{
     };
 
     start() {
-        this.word.innerHTML = this.words[this.index];
+        this.input.classList.add('hidden')
+        this.answer_btn.classList.add('hidden')
+        this.exit_btn.classList.add('hidden')
+        this.print_word()
+    };
+
+    print_word() {
         this.start_btn.classList.add('hidden')
+        this.word.innerHTML = this.words[this.index];
+        setTimeout(() => {
+            this.enter_word();
+        }, 2000);
+    }
+
+    enter_word() {
+        this.word.innerHTML = ''
         this.input.classList.remove('hidden')
         this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
-    };
+        this.timer = setTimeout(() => {
+            this.if_right()
+        }, 5000);
+    }
+
+    if_right() {
+        if (this.input.value !== this.words[this.index]) {
+            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+            this.word.innerHTML = '';
+            return;
+        };
+        
+        if (this.index === words.length -1) {
+            this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+        } else {
+            this.input.value = '';
+            this.index++;
+            this.word.innerHTML = this.words[this.index];
+            this.start();
+        };
+    }
 };
 
 new Game(words);

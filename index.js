@@ -23,7 +23,7 @@ class Game{
 
         this.answer_btn.addEventListener('click', () => {
             clearTimeout(this.timer)
-            this.if_right()
+            this.ifBtnRight()
         });
 
         this.exit_btn.addEventListener('click', () => {
@@ -32,9 +32,6 @@ class Game{
     };
 
     start() {
-        this.input.classList.add('hidden')
-        this.answer_btn.classList.add('hidden')
-        this.exit_btn.classList.add('hidden')
         this.print_word()
     };
 
@@ -52,18 +49,24 @@ class Game{
         this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
         this.timer = setTimeout(() => {
-            this.if_right()
+            this.TimesUp()
         }, 5000);
     }
 
-    if_right() {
+    ifBtnRight() {
         if (this.input.value !== this.words[this.index]) {
             this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
             this.word.innerHTML = '';
+            this.input.classList.add('hidden')
+            this.answer_btn.classList.add('hidden')
+            this.exit_btn.classList.add('hidden')
             return;
         };
         
         if (this.index === words.length -1) {
+            this.input.classList.add('hidden')
+            this.answer_btn.classList.add('hidden')
+            this.exit_btn.classList.add('hidden')
             this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
         } else {
             this.input.value = '';
@@ -71,6 +74,16 @@ class Game{
             this.word.innerHTML = this.words[this.index];
             this.start();
         };
+    }
+
+    TimesUp() {
+        this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+        this.word.innerHTML = '';
+        
+        this.input.classList.add('hidden')
+        this.answer_btn.classList.add('hidden')
+        this.exit_btn.classList.add('hidden')
+        return;
     }
 };
 

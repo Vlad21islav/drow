@@ -32,11 +32,14 @@ class Game{
     };
 
     start() {
+        this.start_btn.classList.add('hidden')
         this.print_word()
     };
 
     print_word() {
-        this.start_btn.classList.add('hidden')
+        this.input.classList.add('hidden')
+        this.answer_btn.classList.add('hidden')
+        this.exit_btn.classList.add('hidden')
         this.word.innerHTML = this.words[this.index];
         setTimeout(() => {
             this.enter_word();

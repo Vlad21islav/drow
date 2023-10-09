@@ -8,6 +8,7 @@ class Game{
         this.exit_btn = document.getElementById('exit_btn');
         this.result = document.getElementById('result');
         this.word = document.getElementById('word');
+        this.retry_btn = document.getElementById('retry_btn');
 
         this.words = words;
         this.index = 0;
@@ -18,51 +19,51 @@ class Game{
         if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"');
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.word === null) throw new Error('Не найден элемент с id "word"');
+        if (this.retry_btn === null) throw new Error('Не найден элемент с id "retry_btn"');
         
-        this.start_btn.addEventListener('click', () => this.start());
+        this.start_btn.addEventListener('click', () => this.print_word());
 
         this.answer_btn.addEventListener('click', () => {
             clearTimeout(this.timer)
-            this.ifBtnRight()
+            this.checkWord()
         });
 
         this.exit_btn.addEventListener('click', () => {
-            undefined;
+            this.start_btn.classList.remove('hidden')
         });
     };
 
-    start() {
+    print_word() {
+        this.retry_btn.classList.add('hidden')
         this.start_btn.classList.add('hidden')
         this.print_word()
-    };
-
-    print_word() {
         this.input.classList.add('hidden')
         this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')
         this.word.innerHTML = this.words[this.index];
         setTimeout(() => {
-            this.enter_word();
+            this.showForm();
         }, 2000);
     }
 
-    enter_word() {
+    showForm() {
         this.word.innerHTML = ''
         this.input.classList.remove('hidden')
         this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
         this.timer = setTimeout(() => {
-            this.TimesUp()
+            this.showGameOver()
         }, 5000);
     }
 
-    ifBtnRight() {
+    checkWord() {
         if (this.input.value !== this.words[this.index]) {
             this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
             this.word.innerHTML = '';
             this.input.classList.add('hidden')
             this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
+            this.retry_btn.classList.remove('hidden')
             return;
         };
         
@@ -71,18 +72,20 @@ class Game{
             this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
             this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+            this.retry_btn.classList.remove('hidden')
         } else {
             this.input.value = '';
             this.index++;
             this.word.innerHTML = this.words[this.index];
-            this.start();
+            this.print_word();
         };
     }
 
-    TimesUp() {
+    showGameOver() {
         this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
         this.word.innerHTML = '';
         
+        this.retry_btn.classList.remove('hidden')
         this.input.classList.add('hidden')
         this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')

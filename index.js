@@ -36,7 +36,6 @@ class Game{
     print_word() {
         this.retry_btn.classList.add('hidden')
         this.start_btn.classList.add('hidden')
-        this.print_word()
         this.input.classList.add('hidden')
         this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')

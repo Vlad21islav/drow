@@ -31,6 +31,8 @@ class Game{
         this.exit_btn.addEventListener('click', () => {
             this.start_btn.classList.remove('hidden')
         });
+
+        this.retry_btn.addEventListener('click', () => this.print_word());
     };
 
     print_word() {

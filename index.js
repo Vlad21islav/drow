@@ -36,6 +36,7 @@ class Game{
     };
 
     print_word() {
+        this.word.innerHTML = '';
         this.retry_btn.classList.add('hidden')
         this.start_btn.classList.add('hidden')
         this.input.classList.add('hidden')

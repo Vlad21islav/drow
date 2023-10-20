@@ -32,14 +32,19 @@ class Game{
             this.start_btn.classList.remove('hidden')
             this.result.innerHTML = '';
             this.retry_btn.classList.add('hidden')
-            this.start_btn.classList.add('hidden')
+            this.start_btn.classList.remove('hidden')
             this.input.classList.add('hidden')
             this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
             this.word.innerHTML = '';
+            clearTimeout(this.timer)
+            this.index = 0
         });
 
-        this.retry_btn.addEventListener('click', () => this.print_word());
+        this.retry_btn.addEventListener('click', () => {
+            this.word.innerHTML = '';
+            this.print_word()
+        });
     };
 
     print_word() {
@@ -81,7 +86,7 @@ class Game{
             this.input.classList.add('hidden')
             this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
-            this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+            this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index + 1}`;
             this.retry_btn.classList.remove('hidden')
             this.index = 0
         } else {

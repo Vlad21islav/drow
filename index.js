@@ -59,7 +59,7 @@ class Game{
         this.input.classList.add('hidden')
         this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')
-        this.word.innerHTML = this.words[this.index];
+        this.word.innerHTML = this.words[this.index].split('').reverse().join('');
         setTimeout(() => {
             this.showForm();
         }, 2000);

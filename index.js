@@ -10,7 +10,7 @@ class Game{
         this.word = document.getElementById('word');
         this.retry_btn = document.getElementById('retry_btn');
 
-        this.words = words;
+        this.words = this.shuffle(words);
         this.index = 0;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
@@ -40,12 +40,14 @@ class Game{
             this.input.value = ''
             clearTimeout(this.timer)
             this.index = 0
+            this.words = this.shuffle(words)
         });
 
         this.retry_btn.addEventListener('click', () => {
             this.word.innerHTML = '';
             this.input.value = ''
             this.index = 0
+            this.words = this.shuffle(words)
             this.print_word()
         });
     };
@@ -82,6 +84,7 @@ class Game{
             this.exit_btn.classList.add('hidden')
             this.retry_btn.classList.remove('hidden')
             this.index = 0
+            this.words = this.shuffle(words)
             return;
         };
         
@@ -92,6 +95,7 @@ class Game{
             this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index + 1}`;
             this.retry_btn.classList.remove('hidden')
             this.index = 0
+            this.words = this.shuffle(words)
         } else {
             this.input.value = '';
             this.index++;
@@ -111,6 +115,10 @@ class Game{
         this.exit_btn.classList.add('hidden')
         return;
     }
+
+    shuffle(array) {
+        return array.sort(() => Math.random() - 0.5);
+    };
 };
 
 new Game(words);

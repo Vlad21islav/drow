@@ -1,4 +1,4 @@
-const words = ['greeting ', 'funny ', 'beauty ', 'winner ', 'intelligence ', 'amazing ', 'reliable ', 'experiment ', 'melodic ', 'delightful ', 'vegetation ', 'demonstration ', 'enormous ', 'original ', 'perfect ', 'safety ', 'innovative ', 'participant ', 'emotional ', 'diversity ', 'research ', 'high-quality ', 'educational ', 'technological ', 'promising ', 'captivating ', 'cute ', 'genuine ', 'wonderful ', 'originality ', 'variety ', 'creative ', 'efficiency ', 'progressive ', 'unusual ', 'stability ', 'interesting ', 'scientific ', 'modern ', 'fantastic ', 'unique ', 'cultural ', 'creative ', 'individuality ', 'productivity ', 'ecological ', 'boundless ', 'confidence ', 'spacious ', 'harmonious'];
+const words = ['greeting', 'funny', 'beauty', 'winner', 'intelligence', 'amazing', 'reliable', 'experiment', 'melodic', 'delightful', 'vegetation', 'demonstration', 'enormous', 'original', 'perfect', 'safety', 'innovative', 'participant', 'emotional', 'diversity', 'research', 'high-quality', 'educational', 'technological', 'promising', 'captivating', 'cute', 'genuine', 'wonderful', 'originality', 'variety', 'creative', 'efficiency', 'progressive', 'unusual', 'stability', 'interesting', 'scientific', 'modern', 'fantastic', 'unique', 'cultural', 'creative', 'individuality', 'productivity', 'ecological', 'boundless', 'confidence', 'spacious', 'harmonious'];
 
 class Game{
     constructor(words) {
@@ -12,6 +12,7 @@ class Game{
 
         this.words = this.shuffle(words);
         this.index = 0;
+        this.overTime = 0;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
@@ -21,7 +22,7 @@ class Game{
         if (this.word === null) throw new Error('Не найден элемент с id "word"');
         if (this.retry_btn === null) throw new Error('Не найден элемент с id "retry_btn"');
         
-        this.start_btn.addEventListener('click', () => this.print_word());
+        this.start_btn.addEventListener('click', () => this.printWord());
 
         this.answer_btn.addEventListener('click', () => {
             clearTimeout(this.timer)
@@ -48,11 +49,11 @@ class Game{
             this.input.value = ''
             this.index = 0
             this.words = this.shuffle(words)
-            this.print_word()
+            this.printWord()
         });
     };
 
-    print_word() {
+    printWord() {
         this.result.innerHTML = '';
         this.retry_btn.classList.add('hidden')
         this.start_btn.classList.add('hidden')
@@ -70,6 +71,7 @@ class Game{
         this.input.classList.remove('hidden')
         this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
+        this.startTime = Date.now() 
         this.timer = setTimeout(() => {
             this.checkWord()
         }, 5000);
@@ -77,7 +79,11 @@ class Game{
 
     checkWord() {
         if (this.input.value !== this.words[this.index]) {
-            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+            if (this.index > 0) {
+                this.result.innerHTML = `неправильно, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+            } else {
+                this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+            }
             this.word.innerHTML = '';
             this.input.classList.add('hidden')
             this.answer_btn.classList.add('hidden')
@@ -92,7 +98,11 @@ class Game{
             this.input.classList.add('hidden')
             this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
-            this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index + 1}`;
+            if (this.index > 0) {
+                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+            } else {
+                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+            }
             this.retry_btn.classList.remove('hidden')
             this.index = 0
             this.words = this.shuffle(words)
@@ -100,12 +110,17 @@ class Game{
             this.input.value = '';
             this.index++;
             this.word.innerHTML = this.words[this.index];
-            this.print_word();
+            this.overTime += Date.now() - this.startTime;
+            this.printWord();
         };
     }
 
     showGameOver() {
-        this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+        if (this.index > 0) {
+            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+        } else {
+            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+        }
         this.word.innerHTML = '';
         this.index = 0
         
@@ -118,6 +133,14 @@ class Game{
 
     shuffle(array) {
         return array.sort(() => Math.random() - 0.5);
+    };
+
+    getAverageTime() {
+        return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
+    };
+    
+    getTotalTime() {
+        return Math.floor(this.overTime / 1000 * 100) / 100;
     };
 };
 

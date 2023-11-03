@@ -51,6 +51,10 @@ class Game{
             this.words = this.shuffle(words)
             this.printWord()
         });
+
+        function setFocusToTextBox() {
+            this.input.focus();
+        }
     };
 
     printWord() {

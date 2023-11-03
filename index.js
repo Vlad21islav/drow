@@ -51,10 +51,6 @@ class Game{
             this.words = this.shuffle(words)
             this.printWord()
         });
-
-        function setFocusToTextBox() {
-            this.input.focus();
-        }
     };
 
     printWord() {
@@ -73,6 +69,7 @@ class Game{
     showForm() {
         this.word.innerHTML = ''
         this.input.classList.remove('hidden')
+        this.setFocusToTextBox()
         this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
         this.startTime = Date.now() 
@@ -146,6 +143,10 @@ class Game{
     getTotalTime() {
         return Math.floor(this.overTime / 1000 * 100) / 100;
     };
+
+    setFocusToTextBox() {
+        this.input.focus();
+    }
 };
 
 new Game(words);

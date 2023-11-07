@@ -4,7 +4,6 @@ class Game{
     constructor(words) {
         this.start_btn = document.getElementById('start_btn');
         this.input = document.getElementById('input');
-        this.answer_btn = document.getElementById('answer_btn');
         this.exit_btn = document.getElementById('exit_btn');
         this.result = document.getElementById('result');
         this.word = document.getElementById('word');
@@ -16,7 +15,6 @@ class Game{
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
-        if (this.answer_btn === null) throw new Error('Не найден элемент с id "answer_btn"');
         if (this.exit_btn === null) throw new Error('Не найден элемент с id "exit_btn"');
         if (this.result === null) throw new Error('Не найден элемент с id "result"');
         if (this.word === null) throw new Error('Не найден элемент с id "word"');
@@ -24,18 +22,12 @@ class Game{
         
         this.start_btn.addEventListener('click', () => this.printWord());
 
-        this.answer_btn.addEventListener('click', () => {
-            clearTimeout(this.timer)
-            this.checkWord()
-        });
-
         this.exit_btn.addEventListener('click', () => {
             this.start_btn.classList.remove('hidden')
             this.result.innerHTML = '';
             this.retry_btn.classList.add('hidden')
             this.start_btn.classList.remove('hidden')
             this.input.classList.add('hidden')
-            this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
             this.word.innerHTML = '';
             this.input.value = ''
@@ -58,7 +50,6 @@ class Game{
         this.retry_btn.classList.add('hidden')
         this.start_btn.classList.add('hidden')
         this.input.classList.add('hidden')
-        this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')
         this.word.innerHTML = this.words[this.index].split('').reverse().join('');
         setTimeout(() => {
@@ -70,7 +61,6 @@ class Game{
         this.word.innerHTML = ''
         this.input.classList.remove('hidden')
         this.setFocusToTextBox()
-        this.answer_btn.classList.remove('hidden')
         this.exit_btn.classList.remove('hidden')
         this.startTime = Date.now() 
         this.timer = setTimeout(() => {
@@ -87,7 +77,6 @@ class Game{
             }
             this.word.innerHTML = '';
             this.input.classList.add('hidden')
-            this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
             this.retry_btn.classList.remove('hidden')
             this.index = 0
@@ -97,7 +86,6 @@ class Game{
         
         if (this.index === words.length -1) {
             this.input.classList.add('hidden')
-            this.answer_btn.classList.add('hidden')
             this.exit_btn.classList.add('hidden')
             if (this.index > 0) {
                 this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
@@ -127,7 +115,6 @@ class Game{
         
         this.retry_btn.classList.remove('hidden')
         this.input.classList.add('hidden')
-        this.answer_btn.classList.add('hidden')
         this.exit_btn.classList.add('hidden')
         return;
     }

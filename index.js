@@ -36,6 +36,30 @@ class Game{
             this.words = this.shuffle(words)
         });
 
+        this.input.addEventListener('input', () => {
+            if (this.input.value === this.words[this.index]) {
+                clearTimeout(this.timer)
+                if (this.index === words.length -1) {
+                    this.input.classList.add('hidden')
+                    this.exit_btn.classList.add('hidden')
+                    if (this.index > 0) {
+                        this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+                    } else {
+                        this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+                    }
+                    this.retry_btn.classList.remove('hidden')
+                    this.index = 0
+                    this.words = this.shuffle(words)
+                } else {
+                    this.input.value = '';
+                    this.index++;
+                    this.word.innerHTML = this.words[this.index];
+                    this.overTime += Date.now() - this.startTime;
+                    this.printWord();
+                };
+            }
+        });
+
         this.retry_btn.addEventListener('click', () => {
             this.word.innerHTML = '';
             this.input.value = ''

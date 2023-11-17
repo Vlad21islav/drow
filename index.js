@@ -34,6 +34,7 @@ class Game{
             clearTimeout(this.timer)
             this.index = 0
             this.words = this.shuffle(words)
+            this.overTime = 0;
         });
 
         this.input.addEventListener('input', () => {

@@ -82,7 +82,7 @@ class Game{
         this.word.innerHTML = this.words[this.index].split('').reverse().join('');
         setTimeout(() => {
             this.showForm();
-        }, 2000);
+        }, this.rememberTime);
     };
 
     showForm() {
@@ -93,7 +93,7 @@ class Game{
         this.startTime = Date.now() ;
         this.timer = setTimeout(() => {
             this.checkWord();
-        }, 5000);
+        }, this.inputTime);
     };
 
     checkWord() {

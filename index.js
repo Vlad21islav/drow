@@ -1,7 +1,7 @@
 const words = ['greeting', 'funny', 'beauty', 'winner', 'intelligence', 'amazing', 'reliable', 'experiment', 'melodic', 'delightful', 'vegetation', 'demonstration', 'enormous', 'original', 'perfect', 'safety', 'innovative', 'participant', 'emotional', 'diversity', 'research', 'high-quality', 'educational', 'technological', 'promising', 'captivating', 'cute', 'genuine', 'wonderful', 'originality', 'variety', 'creative', 'efficiency', 'progressive', 'unusual', 'stability', 'interesting', 'scientific', 'modern', 'fantastic', 'unique', 'cultural', 'creative', 'individuality', 'productivity', 'ecological', 'boundless', 'confidence', 'spacious', 'harmonious'];
 
 class Game{
-    constructor(words) {
+    constructor(input) {
         this.start_btn = document.getElementById('start_btn');
         this.input = document.getElementById('input');
         this.exit_btn = document.getElementById('exit_btn');
@@ -9,11 +9,11 @@ class Game{
         this.word = document.getElementById('word');
         this.retry_btn = document.getElementById('retry_btn');
 
-        this.words = this.shuffle(words);
+        this.words = this.shuffle(input.words);
         this.index = 0;
         this.overTime = 0;
-        this.rememberTime = 2000;
-        this.inputTime = 5000;
+        this.rememberTime = input.rememberTime;
+        this.inputTime = input.inputTime;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
@@ -164,4 +164,8 @@ class Game{
     };
 };
 
-new Game(words);
+new Game({
+    words,
+    waitTime: 5000,
+    showTime: 2000
+ });

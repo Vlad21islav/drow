@@ -12,8 +12,8 @@ class Game{
         this.words = this.shuffle(input.words);
         this.index = 0;
         this.overTime = 0;
-        this.rememberTime = input.rememberTime;
-        this.inputTime = input.inputTime;
+        this.showTime = input.showTime;
+        this.waitTime = input.waitTime;
 
         if (this.start_btn === null) throw new Error('Не найден элемент с id "start_btn"');
         if (this.input === null) throw new Error('Не найден элемент с id "input"');
@@ -82,7 +82,7 @@ class Game{
         this.word.innerHTML = this.words[this.index].split('').reverse().join('');
         setTimeout(() => {
             this.showForm();
-        }, this.rememberTime);
+        }, this.showTime);
     };
 
     showForm() {
@@ -93,7 +93,7 @@ class Game{
         this.startTime = Date.now() ;
         this.timer = setTimeout(() => {
             this.checkWord();
-        }, this.inputTime);
+        }, this.waitTime);
     };
 
     checkWord() {

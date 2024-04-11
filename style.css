@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(223, 223, 231);
-    color: goldenrod;
+    background-color: rgb(90, 163, 104);
+    color: black;
 }
 
 .all {
@@ -11,7 +11,7 @@ body {
 .inp {
     border: none;
     border-bottom: 3px solid gray;
-    background-color: rgb(223, 223, 231);
+    background-color: rgb(90, 163, 104);
     color: green;
     width: 40%;
 }
@@ -19,15 +19,15 @@ body {
 .language {
     margin-top: 20px;
     border: 2px solid gray;
-    background-color: rgb(223, 223, 231);
-    color: blue;
+    background-color: rgb(90, 163, 104);
+    color: white;
 }
 
 .btn {
     margin-top: 20px;
     border: 2px solid gray;
-    background-color: rgb(223, 223, 231);
-    color: blue;
+    background-color: rgb(90, 163, 104);
+    color: white;
     cursor: pointer;
     font-size: 50px;
 }

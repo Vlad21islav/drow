@@ -11,6 +11,7 @@ class Game{
         this.greeting1 = document.getElementById('greeting1');
         this.textarea = document.getElementById('textarea');
         this.greeting2 = document.getElementById('greeting2');
+        this.greeting3 = document.getElementById('greeting3');
 
         this.words = this.shuffle(options.words);
         this.index = 0;
@@ -27,6 +28,7 @@ class Game{
         if (this.greeting1 === null) throw new Error('Не найден элемент с id "greeting1"');
         if (this.textarea === null) throw new Error('Не найден элемент с id "textarea"');
         if (this.greeting2 === null) throw new Error('Не найден элемент с id "greeting2"');
+        if (this.greeting3 === null) throw new Error('Не найден элемент с id "greeting3"');
         
         this.start_btn.addEventListener('click', () => this.printWord());
 
@@ -85,6 +87,7 @@ class Game{
         };
         this.greeting1.classList.add('hidden')
         this.greeting2.classList.add('hidden')
+        this.greeting3.classList.add('hidden')
         this.textarea.classList.add('hidden')
         this.result.innerHTML = '';
         this.retry_btn.classList.add('hidden');
@@ -178,6 +181,6 @@ class Game{
 
 new Game({
     words,
-    waitTime: 5000,
-    showTime: 2000
+    waitTime: 20 * 1000,
+    showTime: 5 * 1000
  });

@@ -5,6 +5,7 @@ body {
 
 .all {
     text-align: center;
+    font-size: 50px;
 }   
 
 .inp {
@@ -28,6 +29,7 @@ body {
     background-color: rgb(223, 223, 231);
     color: blue;
     cursor: pointer;
+    font-size: 50px;
 }
 
 #errors {

@@ -12,8 +12,9 @@ body {
     border: none;
     border-bottom: 3px solid gray;
     background-color: rgb(90, 163, 104);
-    color: green;
+    color: white;
     width: 40%;
+    font-size: 50px;
 }
 
 .language {

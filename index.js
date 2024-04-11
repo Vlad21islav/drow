@@ -50,7 +50,7 @@ class Game{
         this.input.addEventListener('input', () => {
             if (this.input.value === this.words[this.index]) {
                 clearTimeout(this.timer);
-                if (this.index === words.length -1) {
+                if (this.index === this.words.length -1) {
                     this.input.classList.add('hidden');
                     this.exit_btn.classList.add('hidden');
                     if (this.index > 0) {

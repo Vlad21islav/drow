@@ -54,9 +54,9 @@ class Game{
                     this.input.classList.add('hidden');
                     this.exit_btn.classList.add('hidden');
                     if (this.index > 0) {
-                        this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+                        this.result.innerHTML = `you won, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
                     } else {
-                        this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+                        this.result.innerHTML = `you won, your racord is ${this.index}`;
                     };
                     this.retry_btn.classList.remove('hidden');
                     this.index = 0;
@@ -114,9 +114,9 @@ class Game{
     checkWord() {
         if (this.input.value !== this.words[this.index]) {
             if (this.index > 0) {
-                this.result.innerHTML = `неправильно, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+                this.result.innerHTML = `you lose, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
             } else {
-                this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+                this.result.innerHTML = `you lose, your racord is ${this.index}`;
             };
             this.word.innerHTML = '';
             this.input.classList.add('hidden');
@@ -131,9 +131,9 @@ class Game{
             this.input.classList.add('hidden');
             this.exit_btn.classList.add('hidden');
             if (this.index > 0) {
-                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+                this.result.innerHTML = `you won, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
             } else {
-                this.result.innerHTML = `вы выиграли, ваш рекорд ${this.index}`;
+                this.result.innerHTML = `you won, your racord is ${this.index}`;
             };
             this.retry_btn.classList.remove('hidden');
             this.index = 0;
@@ -149,9 +149,9 @@ class Game{
 
     showGameOver() {
         if (this.index > 0) {
-            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}, среднее время ${this.getAverageTime()}, общее время ${this.getTotalTime()}`;
+            this.result.innerHTML = `you lose, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
         } else {
-            this.result.innerHTML = `неправильно, ваш рекорд ${this.index}`;
+            this.result.innerHTML = `you lose, your racord is ${this.index}`;
         };
         this.word.innerHTML = '';
         this.index = 0;

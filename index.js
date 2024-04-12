@@ -54,9 +54,9 @@ class Game{
                     this.input.classList.add('hidden');
                     this.exit_btn.classList.add('hidden');
                     if (this.index > 0) {
-                        this.result.innerHTML = `you won, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
+                        this.result.innerHTML = `you won, your result is ${this.index} words, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
                     } else {
-                        this.result.innerHTML = `you won, your racord is ${this.index}`;
+                        this.result.innerHTML = `you won, your result is ${this.index} words`;
                     };
                     this.retry_btn.classList.remove('hidden');
                     this.index = 0;
@@ -114,9 +114,9 @@ class Game{
     checkWord() {
         if (this.input.value !== this.words[this.index]) {
             if (this.index > 0) {
-                this.result.innerHTML = `you lose, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
+                this.result.innerHTML = `there is something to correct, your result is ${this.index} words, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
             } else {
-                this.result.innerHTML = `you lose, your racord is ${this.index}`;
+                this.result.innerHTML = `there is something to correct, your result is ${this.index} words`;
             };
             this.word.innerHTML = '';
             this.input.classList.add('hidden');
@@ -131,9 +131,9 @@ class Game{
             this.input.classList.add('hidden');
             this.exit_btn.classList.add('hidden');
             if (this.index > 0) {
-                this.result.innerHTML = `you won, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
+                this.result.innerHTML = `you won, your result is ${this.index} words, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
             } else {
-                this.result.innerHTML = `you won, your racord is ${this.index}`;
+                this.result.innerHTML = `you won, your result is ${this.index} words`;
             };
             this.retry_btn.classList.remove('hidden');
             this.index = 0;
@@ -149,9 +149,9 @@ class Game{
 
     showGameOver() {
         if (this.index > 0) {
-            this.result.innerHTML = `you lose, your racord is ${this.index}, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
+            this.result.innerHTML = `there is something to correct, your result is ${this.index} words, average time ${this.getAverageTime()}, total time ${this.getTotalTime()}`;
         } else {
-            this.result.innerHTML = `you lose, your racord is ${this.index}`;
+            this.result.innerHTML = `there is something to correct, your result is ${this.index} words`;
         };
         this.word.innerHTML = '';
         this.index = 0;

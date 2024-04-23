@@ -15,6 +15,7 @@ body {
     color: white;
     width: 40%;
     font-size: 50px;
+    cursor: text;
 }
 
 .language {
@@ -31,6 +32,10 @@ body {
     color: white;
     cursor: pointer;
     font-size: 50px;
+}
+
+.text {
+    cursor: text;
 }
 
 #errors {
